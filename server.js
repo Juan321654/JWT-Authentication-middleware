@@ -21,7 +21,7 @@ app.get('/posts', authenticateToken, (req, res) => {
   res.json(posts.filter(post => post.username === req.user.name))
 })
 
-function authenticateToken(req, res, next) {
+function authenticateToken(req, res, next) { // this gets called in /posts, and "next()" means that it can continue with the rest of the code
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
   if (token == null) return res.sendStatus(401)
